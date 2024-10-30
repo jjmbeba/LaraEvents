@@ -41,7 +41,6 @@ export default function Login({
             <form onSubmit={submit}>
                 <div>
                     <InputLabel htmlFor="email" value="Email" />
-
                     <TextInput
                         id="email"
                         type="email"
@@ -81,9 +80,17 @@ export default function Login({
                                 setData('remember', e.target.checked)
                             }
                         />
-                        <span className="ms-2 text-sm text-gray-600">
+                        <div className={'w-full flex items-center justify-between'}>
+                            <span className="ms-2 text-sm text-gray-600">
                             Remember me
                         </span>
+                            <Link
+                                href={route('register')}
+                                className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            >
+                                Don&apos;t have an account?
+                            </Link>
+                        </div>
                     </label>
                 </div>
 

@@ -4,6 +4,7 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
+import Logo from "@/Components/Logo";
 
 export default function Authenticated({
     header,
@@ -21,17 +22,27 @@ export default function Authenticated({
                     <div className="flex h-16 justify-between">
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
-                                <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
-                                </Link>
+                                <Logo isAuthenticated={true} className="text-xl fill-current text-gray-500"/>
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink
-                                    href={route('dashboard')}
-                                    active={route().current('dashboard')}
+                                    href={route('home')}
+                                    active={route().current('home')}
                                 >
-                                    Dashboard
+                                    Home
+                                </NavLink>
+                                <NavLink
+                                    href={route('events.index')}
+                                    active={route().current('events.index')}
+                                >
+                                    Events
+                                </NavLink>
+                                <NavLink
+                                    href={route('tickets.index')}
+                                    active={route().current('tickets.index')}
+                                >
+                                    My Tickets
                                 </NavLink>
                             </div>
                         </div>
@@ -132,10 +143,22 @@ export default function Authenticated({
                 >
                     <div className="space-y-1 pb-3 pt-2">
                         <ResponsiveNavLink
-                            href={route('dashboard')}
-                            active={route().current('dashboard')}
+                            href={route('home')}
+                            active={route().current('home')}
                         >
-                            Dashboard
+                            Home
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('events.index')}
+                            active={route().current('events.index')}
+                        >
+                            Events
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('tickets.index')}
+                            active={route().current('tickets.index')}
+                        >
+                            My Tickets
                         </ResponsiveNavLink>
                     </div>
 
