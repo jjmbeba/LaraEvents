@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\User;
 use App\Services\EventService;
+use App\Services\OrganizerService;
 use Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -15,10 +16,12 @@ class DashboardController extends Controller
      * Display a listing of the resource.
      */
     protected $eventService;
+    protected $organizerService;
 
-    public function __construct(EventService $eventService)
+    public function __construct(EventService $eventService, OrganizerService $organizerService)
     {
         $this->eventService = $eventService;
+        $this->organizerService = $organizerService;
     }
 
 
@@ -36,10 +39,11 @@ class DashboardController extends Controller
             ];
         }
 
-
+        $totalTicketsSold = $this->organizerService->getTotalTicketsSold(User::first());
 
         return Inertia::render('Dashboard/Index', [
-            'eventsWithPurchaseCounts' => $eventsWithPurchaseCounts
+            'eventsWithPurchaseCounts' => $eventsWithPurchaseCounts,
+            'totalTicketsSold' => $totalTicketsSold
         ]);
     }
 

@@ -4,10 +4,11 @@ import {DollarSign, Ticket, Users} from "lucide-react";
 
 type Props = {
     numberOfEvents:number;
-    numberofEventsThisWeek:number;
+    numberOfEventsThisWeek:number;
+    totalTicketsSold:number;
 }
 
-const DashboardOverview = ({numberOfEvents, numberofEventsThisWeek}:Props) => {
+const DashboardOverview = ({numberOfEvents, numberOfEventsThisWeek, totalTicketsSold}:Props) => {
     return (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <Card>
@@ -26,7 +27,9 @@ const DashboardOverview = ({numberOfEvents, numberofEventsThisWeek}:Props) => {
                     <Ticket className="h-4 w-4 text-muted-foreground"/>
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold">1,680</div>
+                    <div className="text-2xl font-bold">
+                        {totalTicketsSold}
+                    </div>
                     <p className="text-xs text-muted-foreground">+180 in the last hour</p>
                 </CardContent>
             </Card>
@@ -39,7 +42,7 @@ const DashboardOverview = ({numberOfEvents, numberofEventsThisWeek}:Props) => {
                     <div className="text-2xl font-bold">
                         {numberOfEvents}
                     </div>
-                    <p className="text-xs text-muted-foreground">{numberofEventsThisWeek} starting this
+                    <p className="text-xs text-muted-foreground">{numberOfEventsThisWeek} starting this
                         week</p>
                 </CardContent>
             </Card>

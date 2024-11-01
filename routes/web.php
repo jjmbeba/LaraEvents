@@ -26,7 +26,7 @@ Route::resource('tickets', TicketController::class)
     ->middleware(['auth']);
 
 Route::resource('events', EventController::class)
-    ->only(['index', 'show'])
+    ->only(['index', 'show', 'create'])
     ->middleware(['auth']);
 
 Route::resource('dashboard', DashboardController::class)

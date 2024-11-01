@@ -42,7 +42,7 @@ export default function Authenticated({
                                 )}
                                 <NavLink
                                     href={route('events.index')}
-                                    active={route().current('events.index') || route().current('events.show')}
+                                    active={route().current('events.index') || route().current('events.show') || route().current('events.create')}
                                 >
                                     Events
                                 </NavLink>
@@ -158,7 +158,7 @@ export default function Authenticated({
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                             href={route('events.index')}
-                            active={route().current('events.index') || route().current('events.show')}
+                            active={route().current('events.index') || route().current('events.show') || route().current('events.create')}
                         >
                             Events
                         </ResponsiveNavLink>

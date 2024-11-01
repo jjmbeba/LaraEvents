@@ -12,6 +12,11 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->middleware('isOrganizer')->only(['create']);
+    }
+
     public function index()
     {
         return Inertia::render('Events/Index', [
@@ -24,7 +29,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Events/Create');
     }
 
     /**
