@@ -1,22 +1,21 @@
-import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link, usePage } from '@inertiajs/react';
-import { PropsWithChildren, ReactNode, useState } from 'react';
+import {usePage} from '@inertiajs/react';
+import {PropsWithChildren, ReactNode, useState} from 'react';
 import Logo from "@/Components/Logo";
 
 export default function Authenticated({
-    header,
-    children,
-}: PropsWithChildren<{ header?: ReactNode }>) {
+                                          header,
+                                          children,
+                                      }: PropsWithChildren<{ header?: ReactNode }>) {
     const user = usePage().props.auth.user;
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-gray-100 pb-20">
             <nav className="border-b border-gray-100 bg-white">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 justify-between">
@@ -26,15 +25,24 @@ export default function Authenticated({
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink
-                                    href={route('home')}
-                                    active={route().current('home')}
-                                >
-                                    Home
-                                </NavLink>
+                                {user.role === 'attendee' ? (
+                                    <NavLink
+                                        href={route('home')}
+                                        active={route().current('home')}
+                                    >
+                                        Home
+                                    </NavLink>
+                                ) : user.role === 'organizer' && (
+                                    <NavLink
+                                        href={route('dashboard.index')}
+                                        active={route().current('dashboard.index')}
+                                    >
+                                        Dashboard
+                                    </NavLink>
+                                )}
                                 <NavLink
                                     href={route('events.index')}
-                                    active={route().current('events.index')}
+                                    active={route().current('events.index') || route().current('events.show')}
                                 >
                                     Events
                                 </NavLink>
@@ -150,7 +158,7 @@ export default function Authenticated({
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                             href={route('events.index')}
-                            active={route().current('events.index')}
+                            active={route().current('events.index') || route().current('events.show')}
                         >
                             Events
                         </ResponsiveNavLink>
@@ -196,7 +204,7 @@ export default function Authenticated({
                 </header>
             )}
 
-            <main>{children}</main>
+            <main className={'px-16'}>{children}</main>
         </div>
     );
 }

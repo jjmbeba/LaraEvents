@@ -21,6 +21,7 @@ class EventFactory extends Factory
             'title' => fake()->words(5, true),
             'description' => fake()->paragraphs(1, true),
             'location' => fake()->locale(),
+            'image_url' => fake()->imageUrl(),
             'start_time' => fake()->dateTimeBetween('+10 days', '+15 days'),
             'end_time' => fake()->dateTimeBetween('+16 days', '+18 days'),
             'user_id' => User::where('role', 'organizer')->inRandomOrder()->first()

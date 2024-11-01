@@ -16,3 +16,12 @@ export type User = {
     email: string;
     role: string;
 }
+
+export type TicketType = {
+    id: number;
+    event_id: number;
+    type_name:string;
+    price:number;
+    quantity:number;
+    available_quantity:number;
+}

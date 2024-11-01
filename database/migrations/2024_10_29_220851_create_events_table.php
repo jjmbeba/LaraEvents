@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('location');
+            $table->string('image_url');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();

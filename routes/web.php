@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
@@ -25,7 +26,12 @@ Route::resource('tickets', TicketController::class)
     ->middleware(['auth']);
 
 Route::resource('events', EventController::class)
-    ->only(['index']);
+    ->only(['index', 'show'])
+    ->middleware(['auth']);
+
+Route::resource('dashboard', DashboardController::class)
+    ->only(['index'])
+    ->middleware(['auth', 'isOrganizer']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
